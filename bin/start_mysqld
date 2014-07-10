@@ -27,4 +27,5 @@ fi
 # Run mysqld_safe in the foreground
 exec mysqld_safe \
   --defaults-file=$CNFFILE \
-  --datadir=$DATADIR
+  --datadir=$DATADIR \
+  --skip-name-resolve=ON
