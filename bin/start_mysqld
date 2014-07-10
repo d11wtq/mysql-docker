@@ -8,10 +8,20 @@ CNFFILE=/mysql/my.cnf
 # Lazily initialize database if needed
 if [[ ! -f $DATADIR/mysql/db.frm ]]
 then
+  # Allow remote access (and clobber useless docker hostname)
+  grant="UPDATE mysql.user SET host = '%' WHERE host = '$HOSTNAME';"
+
+  # Initialize database
   cd $BASEDIR
   ./scripts/mysql_install_db \
     --defaults-file=$CNFFILE \
     --datadir=$DATADIR
+
+  # Adjust grants
+  echo $grant | mysqld \
+    --defaults-file=$CNFFILE \
+    --datadir=$DATADIR \
+    --bootstrap
 fi
 
 # Run mysqld_safe in the foreground
