@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Paths to things
+BASEDIR=/usr/local
+DATADIR=/mysql/data
+CNFFILE=/mysql/my.cnf
+
+# Lazily initialize database if needed
+if [[ ! -f $DATADIR/mysql/db.frm ]]
+then
+  cd $BASEDIR
+  ./scripts/mysql_install_db \
+    --defaults-file=$CNFFILE \
+    --datadir=$DATADIR
+fi
+
+# Run mysqld_safe in the foreground
+exec mysqld_safe \
+  --defaults-file=$CNFFILE \
+  --datadir=$DATADIR
