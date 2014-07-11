@@ -35,6 +35,7 @@ RUN sudo apt-get install -qq -y cmake;                                     \
 ADD mysql /mysql
 RUN sudo chown -R default: /mysql/data
 
+ADD scripts/init.sql /usr/local/scripts/
 ADD bin/start_mysqld /usr/local/bin/start_mysqld
 RUN sudo chmod 0755 /usr/local/bin/start_mysqld
 

@@ -63,6 +63,10 @@ The data directory is stored at /mysql/data, and a minimal my.cnf is stored at
 
 The 'root' user does not have a password.
 
+For convenience, there is an empty database called 'db' and a passwordless user
+called 'db' that has full privileges on this database (but not any others).  It
+is advised to use this for application integration.
+
 To adjust the configuration of MySQL, you can add \*.cnf files to
 /mysql/my.cnf.d/, either by mounting a volume, or by using this image as a base
 image.
@@ -133,4 +137,5 @@ mysql>
 ```
 
 If you really want to work in a single container, you can run
-/usr/local/bin/start_mysqld from a bash shell in the container.
+/usr/local/bin/start_mysqld from a bash shell in the container. Press Ctrl-\\
+(Ctrl-Backslash) to stop the server.
