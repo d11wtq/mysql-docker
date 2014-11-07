@@ -10,7 +10,7 @@ RUN sudo apt-get install -qq -y libncurses5-dev
 
 RUN sudo apt-get install -qq -y cmake;                                     \
     cd /tmp;                                                               \
-    curl -LO http://cdn.mysql.com/Downloads/MySQL-5.6/mysql-5.6.19.tar.gz; \
+    curl -LO http://dev.mysql.com/get/Downloads/MySQL-5.6/mysql-5.6.19.tar.gz; \
     tar xvzf *.tar.gz; rm -f *.tar.gz;                                     \
     cd mysql*;                                                             \
     cmake .                                                                \
